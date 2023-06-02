@@ -41,6 +41,10 @@ features_volume = ['nWBV']
 X_volume = data[features_volume]
 print(X_volume.head())
 
+features_SES = ['SES']
+X_SES = data[features_SES]
+print(X_SES.head())
+
 features_not_educ = ['M/F', 'Age', 'MMSE', 'nWBV']
 X_not_educ = data[features_not_educ]
 print(X_not_educ.head())
@@ -128,6 +132,20 @@ print(train_y.head())
 model_volume = RandomForestRegressor(random_state=1)
 model_volume.fit(train_X, train_y)
 preds = model_volume.predict(val_X)
+print(val_y, preds)
+print(mean_absolute_error(val_y, preds))
+
+"""Socio-economic Status Prediction"""
+
+train_X, val_X, train_y, val_y = train_test_split(X_SES, y,random_state = 0)
+print("Target:")
+print(train_X.head())
+print("Feature: ")
+print(train_y.head())
+
+model_SES = RandomForestRegressor(random_state=1)
+model_SES.fit(train_X, train_y)
+preds = model_SES.predict(val_X)
 print(val_y, preds)
 print(mean_absolute_error(val_y, preds))
 
